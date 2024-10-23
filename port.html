@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subham Dutta - Full-Stack Developer Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Roboto+Serif:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/ScrollTrigger.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+        body {
+            font-family: 'Roboto Serif', serif;
+            background: #f4f4f4;
+            color: #333;
+            margin: 0;
+            overflow-x: hidden;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 280px;
+            background: #f8f9fa;
+            padding: 30px 20px;
+            box-shadow: 2px 0 20px rgba(0,0,0,0.5);
+            position: fixed;
+            height: 100%;
+            color: #333;
+        }
+
+        .sidebar img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto;
+            border: 4px solid #0077b6;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin: 15px 0;
+            font-weight: 700;
+            color: #2b2b3a;
+        }
+
+        .sidebar p {
+            text-align: center;
+            font-weight: 500;
+            color: #0077b6;
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin-top: 30px;
+        }
+
+        .nav-links li {
+            margin: 20px 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.3rem;
+            transition: color 0.3s, transform 0.3s;
+            display: inline-block;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #0077b6;
+            transform: scale(1.05);
+        }
+
+        .content {
+            margin-left: 300px;
+            padding: 80px;
+            flex: 1;
+        }
+
+        .header {
+            height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: #f8f9fa;
+            color: #2b2b3a;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .intro-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .intro-text p {
+            font-size: 1.6rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .intro-text button {
+            background: #0077b6;
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .intro-text button:hover {
+            background: #005f99;
+            transform: scale(1.05);
+        }
+
+        .about, .services, .skills, .education, .experience, .work, .contact {
+            padding: 60px;
+            background: #ffffff;
+            text-align: left;
+            margin-top: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-content, .services-content, .skills-content, .education-content, .experience-content, .work-content, .contact-content {
+            max-width: 900px;
+            font-size: 1.3rem;
+            line-height: 1.7;
+            color: #444;
+        }
+
+        .about-content h2, .services h2, .skills h2, .education h2, .experience h2, .work h2, .contact h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #2b2b3a;
+            font-weight: 700;
+        }
+
+        .skill-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .skill-name {
+            flex: 1;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2b2b3a;
+        }
+
+        .bar-container {
+            flex: 3;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-left: 20px;
+        }
+
+        .bar {
+            height: 100%;
+            border-radius: 10px;
+            animation: fillBar 2s ease-in-out forwards;
+        }
+
+        @keyframes fillBar {
+            0% { width: 0; }
+        }
+
+        .html {
+            width: 85%;
+            background: #ffc107;
+        }
+
+        .css {
+            width: 90%;
+            background: #8e44ad;
+        }
+
+        .javascript {
+            width: 80%;
+            background: #f39c12;
+        }
+
+        .react {
+            width: 80%;
+            background: #61dafb;
+        }
+
+        .node {
+            width: 75%;
+            background: #3c873a;
+        }
+
+        .mongodb {
+            width: 70%;
+            background: #4caf50;
+        }
+
+        .jquery {
+            width: 60%;
+            background: #ff6f61;
+        }
+
+        .typescript {
+            width: 70%;
+            background: #007acc;
+        }
+
+        .restapi {
+            width: 80%;
+            background: #2a9d8f;
+        }
+
+        .git {
+            width: 85%;
+            background: #f1502f;
+        }
+
+        .bootstrap {
+            width: 75%;
+            background: #563d7c;
+        }
+
+        .jest {
+            width: 65%;
+            background: #99425b;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        .contact-info div {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .contact-info a {
+            color: #0077b6;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: #005f99;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 1.2rem;
+        }
+
+        .contact-form .g-recaptcha {
+            margin-bottom: 15px;
+        }
+
+        .contact-form button {
+            background: #0077b6;
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .contact-form button:hover {
+            background: #005f99;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="profile-image-wrapper">
+            <div class="profile-image-inner-ring">
+                <div class="profile-image">
+                    <!-- Corrected image path -->
+                    <img src="image/1.jpg" alt="Subham Dutta">
+                </div>
+            </div>
+        </div>
+        <h1>Subham Dutta</h1>
+        <p>FULL-STACK DEVELOPER</p>
+        <ul class="nav-links">
+            <li><a href="#home" class="nav-link" data-section="home">HOME</a></li>
+            <li><a href="#about" class="nav-link" data-section="about">ABOUT</a></li>
+            <li><a href="#services" class="nav-link" data-section="services">SERVICES</a></li>
+            <li><a href="#skills" class="nav-link" data-section="skills">SKILLS</a></li>
+            <li><a href="#education" class="nav-link" data-section="education">EDUCATION</a></li>
+            <li><a href="#experience" class="nav-link" data-section="experience">EXPERIENCE</a></li>
+            <li><a href="#work" class="nav-link" data-section="work">WORK</a></li>
+            <li><a href="#contact" class="nav-link" data-section="contact">CONTACT</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <header class="header" id="home">
+            <div class="intro-text">
+                <h1>I am Full-Stack Developer</h1>
+                <p>With expertise in both front-end and back-end technologies, capable of building complete web applications from concept to deployment.</p>
+                <button>DOWNLOAD CV</button>
+            </div>
+        </header>
+
+        <section class="about" id="about">
+            <div class="about-content">
+                <h2>Who Am I?</h2>
+                <p>Hi! I'm Subham Dutta, an innovative self-taught web developer. I'm passionate about building user-focused digital experiences, merging clean design with efficient functionality. My dedication to learning and problem-solving drives me to continuously refine my craft, and I strive to create websites that are not only visually appealing but also intuitive and performant.</p>
+            </div>
+        </section>
+
+        <section class="services" id="services">
+            <div class="services-content">
+                <h2>Services</h2>
+                <p>I provide a range of services, including website development, responsive design, website optimization, and full-stack web solutions. Whether you need a new website or enhancements to an existing one, I'm here to deliver high-quality, scalable, and efficient web solutions tailored to your needs.</p>
+            </div>
+        </section>
+
+        <section class="skills" id="skills">
+            <div class="skills-content">
+                <h2>Skills</h2>
+                <div class="skill-bar">
+                    <div class="skill-name">HTML5</div>
+                    <div class="bar-container">
+                        <div class="bar html"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-name">CSS3</div>
+                    <div class="bar-container">
+                        <div class="bar css"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-name">JavaScript</div>
+                    <div class="bar-container">
+                        <div class="bar javascript"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-name">React.js</div>
+                    <div class="bar-container">
+                        <div class="bar react"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-name">Node.js</div>
+                    <div class="bar-container">
+                        <div class="bar node"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-name">MongoDB</div>
+                    <div class="bar-container">
+                        <div class="bar mongodb"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-name">jQuery</div>
+                    <div class="bar-container">
+                        <div class="bar jquery"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-name">TypeScript</div>
+                    <div class="bar-container">
+                        <div class="bar typescript"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-name">RESTful APIs</div>
+                    <div class="bar-container">
+                        <div class="bar restapi"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-name">Git</div>
+                    <div class="bar-container">
+                        <div class="bar git"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-name">Bootstrap</div>
+                    <div class="bar-container">
+                        <div class="bar bootstrap"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-name">Jest (Testing)</div>
+                    <div class="bar-container">
+                        <div class="bar jest"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="education" id="education">
+            <div class="education-content">
+                <h2>Education</h2>
+                <p>I am a self-taught developer, constantly learning and evolving. I have completed various online courses and bootcamps that have helped me build a strong foundation in full-stack web development. My journey is marked by a commitment to lifelong learning and self-improvement.</p>
+            </div>
+        </section>
+
+        <section class="experience" id="experience">
+            <div class="experience-content">
+                <h2>Experience</h2>
+                <p>I have worked on multiple freelance projects, building websites for small businesses and startups. My experience has given me exposure to a wide range of challenges, allowing me to grow my skills in project management, client communication, and delivering exceptional digital solutions.</p>
+            </div>
+        </section>
+
+        <section class="work" id="work">
+            <div class="work-content">
+                <h2>Work</h2>
+                <p>Here are some of my recent projects: 
+                <ul>
+                    <li>Portfolio Website - A personal portfolio showcasing my skills and projects.</li>
+                    <li>E-commerce Platform - A fully responsive e-commerce website built with React and Node.js.</li>
+                    <li>Fitness App - A web app to track and achieve fitness goals using modern JavaScript frameworks.</li>
+                </ul>
+                </p>
+            </div>
+        </section>
+
+        <section class="contact" id="contact">
+            <div class="contact-content">
+                <h2>Contact</h2>
+                <div class="contact-info">
+                    <div>Email: <a href="mailto:info@subhamdev.com">info@subhamdev.com</a></div>
+                    <div>Location: Guwahati, India</div>
+                    <div>Phone: <a href="tel:+919876543210">+91 98765 43210</a></div>
+                </div>
+                <form class="contact-form">
+                    <input type="text" placeholder="Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="text" placeholder="Subject" required>
+                    <textarea placeholder="Message" rows="5" required></textarea>
+                    <div class="g-recaptcha" data-sitekey="your-site-key"></div>
+                    <button type="submit">SEND MESSAGE</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        gsap.from(".header", { duration: 2, opacity: 0, y: -100 });
+        gsap.from(".about", { scrollTrigger: ".about", duration: 1.5, opacity: 0, x: -100 });
+        gsap.from(".services", { scrollTrigger: ".services", duration: 1.5, opacity: 0, x: 100 });
+        gsap.from(".skills", { scrollTrigger: ".skills", duration: 1.5, opacity: 0, x: -100 });
+        gsap.from(".education", { scrollTrigger: ".education", duration: 1.5, opacity: 0, x: 100 });
+        gsap.from(".experience", { scrollTrigger: ".experience", duration: 1.5, opacity: 0, x: -100 });
+        gsap.from(".work", { scrollTrigger: ".work", duration: 1.5, opacity: 0, x: 100 });
+        gsap.from(".contact", { scrollTrigger: ".contact", duration: 1.5, opacity: 0, y: 100 });
+
+        const sections = document.querySelectorAll("section, header");
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        window.addEventListener("scroll", () => {
+            let current = "";
+
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 60) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLinks.forEach((link) => {
+                link.classList.remove("active");
+                if (link.getAttribute("data-section") === current) {
+                    link.classList.add("active");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
