@@ -4,60 +4,121 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subham Dutta - Full-Stack Developer Portfolio</title>
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- GSAP for Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/ScrollTrigger.min.js"></script>
     <style>
+        /* CSS Variables for Easy Theming */
+        :root {
+            --primary-color: #1abc9c;
+            --secondary-color: #16a085;
+            --background-color: #f7f7f7;
+            --sidebar-background: #4a4a4a;
+            --sidebar-text: #ffffff;
+            --sidebar-hover: #1abc9c;
+            --text-color: #333333;
+            --light-grey: #cccccc;
+            --dark-grey: #555555;
+            --white: #ffffff;
+            --transition-speed: 0.3s;
+            --font-family: 'Poppins', sans-serif;
+        }
+
         /* General Styling */
         body {
-            font-family: 'Poppins', sans-serif;
-            background: #f7f7f7;
-            color: #333;
+            font-family: var(--font-family);
+            background: var(--background-color);
+            color: var(--text-color);
             margin: 0;
             overflow-x: hidden;
+            scroll-behavior: smooth; /* Smooth Scrolling */
         }
 
         /* Sidebar Styling */
         .sidebar {
             width: 300px;
-            background: #f0f0f0;
-            padding: 30px 0;
+            background: var(--sidebar-background);
+            padding: 40px 0;
             position: fixed;
-            height: 100%;
+            top: 0;
+            left: 0;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
-            border-right: 1px solid #ddd;
+            box-shadow: 2px 0 15px rgba(0, 0, 0, 0.3);
+            border-right: 1px solid var(--dark-grey);
             overflow-y: auto;
+            transition: background 0.3s ease;
+        }
+
+        /* Optional: Customize scrollbar for better aesthetics */
+        .sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        .profile-image-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin-bottom: 25px;
+        }
+
+        .profile-image-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 6px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            transition: border-color 0.3s ease;
         }
 
         .profile-image-sidebar {
-            width: 150px;
-            height: 150px;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            border: 4px solid #1abc9c;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image-sidebar:hover {
+            transform: scale(1.05); /* Slight Zoom on Hover */
         }
 
         .sidebar h2 {
             font-size: 1.8rem;
             font-weight: 700;
-            color: #333;
+            color: var(--sidebar-text);
             margin-bottom: 10px;
+            transition: color 0.3s ease;
         }
 
         .sidebar p {
             font-size: 1rem;
-            color: #666;
-            margin-bottom: 30px;
+            color: var(--light-grey);
+            margin-bottom: 40px;
             text-align: center;
         }
 
         .sidebar a {
-            color: #333;
+            color: var(--sidebar-text);
             font-size: 16px;
             text-align: center;
             display: flex;
@@ -65,52 +126,76 @@
             align-items: center;
             padding: 15px 0;
             width: 80%;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             border-radius: 5px;
-            transition: all 0.3s ease;
+            transition: all var(--transition-speed) ease;
+            text-decoration: none;
+            background: transparent;
         }
 
         .sidebar a:hover, .sidebar a.active {
-            color: #fff;
-            background-color: #1abc9c;
+            color: var(--white);
+            background-color: var(--sidebar-hover);
             transform: scale(1.05);
         }
 
         .sidebar-icon {
             font-size: 20px;
             margin-bottom: 5px;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .sidebar a:hover .sidebar-icon, .sidebar a.active .sidebar-icon {
+            color: var(--white);
         }
 
         /* Content Area */
         .content {
             margin-left: 320px;
             padding: 60px;
+            transition: margin-left var(--transition-speed) ease;
         }
 
+        /* Header (Hero) Section */
         .header {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
+            padding-top: 80px;
             text-align: left;
-            background: #f7f7f7;
-            color: #333;
+            background: linear-gradient(135deg, var(--background-color) 50%, #ffffff 50%);
             position: relative;
+            overflow: hidden;
         }
 
-        .header .intro-text {
+        .header::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            background: #ffffff;
+            transform: skewX(-10deg);
+            z-index: 1;
+        }
+
+        .intro-text {
             position: relative;
             z-index: 2;
             max-width: 600px;
         }
 
-        .header h1 {
+        .intro-text h1 {
             font-size: 3.5rem;
             font-weight: 700;
-            margin-bottom: 10px;
-            color: #333;
+            margin-bottom: 15px;
+            color: var(--text-color);
+            line-height: 1.2;
+            transition: color var(--transition-speed) ease;
         }
 
-        .header p {
+        .intro-text p {
             font-size: 1.2rem;
             color: #666;
             max-width: 700px;
@@ -118,20 +203,23 @@
             margin-bottom: 30px;
         }
 
-        .header button {
-            background: #1abc9c;
-            color: #fff;
+        .intro-text button {
+            background: var(--primary-color);
+            color: var(--white);
             padding: 15px 35px;
             border: none;
-            border-radius: 5px;
+            border-radius: 30px;
             font-size: 1.2rem;
             cursor: pointer;
             margin-top: 20px;
-            transition: all 0.3s ease;
+            transition: background var(--transition-speed) ease, transform var(--transition-speed) ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .header button:hover {
-            background: #16a085;
+        .intro-text button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
 
         /* Sections Styling */
@@ -142,13 +230,33 @@
             margin-bottom: 40px;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         section h2 {
             font-size: 2.5rem;
-            color: #333;
+            color: var(--text-color);
             margin-bottom: 30px;
             font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        section h2::after {
+            content: "";
+            width: 50px;
+            height: 3px;
+            background: var(--primary-color);
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+            border-radius: 2px;
         }
 
         section p {
@@ -164,33 +272,40 @@
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .service-item {
-            background: #fff;
-            border-radius: 8px;
+            background: #ffffff;
+            border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            padding: 40px;
+            padding: 40px 20px;
             width: 30%;
-            transition: transform 0.3s ease;
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            cursor: pointer;
         }
 
         .service-item:hover {
             transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
         .service-item i {
             font-size: 3rem;
-            color: #1abc9c;
+            color: var(--primary-color);
             margin-bottom: 20px;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .service-item:hover i {
+            color: var(--secondary-color);
         }
 
         .service-item h3 {
             font-size: 1.8rem;
-            color: #333;
+            color: var(--text-color);
             margin-bottom: 15px;
         }
 
@@ -206,7 +321,7 @@
             margin: 0 auto;
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 30px;
             justify-content: space-between;
         }
 
@@ -220,13 +335,14 @@
             overflow: hidden;
             margin-bottom: 25px;
             position: relative;
+            height: 35px;
         }
 
         .skills .bar {
-            height: 25px;
-            background: #1abc9c;
-            border-radius: 10px;
-            transition: width 1s ease;
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 10px 0 0 10px;
+            transition: width 1.5s ease;
         }
 
         .skills .skill-title {
@@ -235,8 +351,8 @@
             top: 50%;
             transform: translateY(-50%);
             font-size: 1.1rem;
-            font-weight: 500;
-            color: #333;
+            font-weight: 600;
+            color: var(--text-color);
         }
 
         .skills .skill-percentage {
@@ -245,55 +361,83 @@
             top: 50%;
             transform: translateY(-50%);
             font-size: 1.1rem;
-            font-weight: 500;
-            color: #333;
+            font-weight: 600;
+            color: var(--text-color);
         }
 
         /* Contact Form Styling */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background: #f9f9f9;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: box-shadow var(--transition-speed) ease;
+        }
+
+        .contact-form:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
         .contact-form input, .contact-form textarea {
             width: 100%;
             padding: 15px;
-            margin-bottom: 20px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            background: #f9f9f9;
+            background: #ffffff;
             color: #333;
             font-size: 1.1rem;
+            transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 5px rgba(26, 188, 156, 0.5);
+            outline: none;
         }
 
         .contact-form button {
-            background: #1abc9c;
-            color: #fff;
-            padding: 12px 30px;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 15px 30px;
             border: none;
-            border-radius: 5px;
+            border-radius: 30px;
             font-size: 1.2rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: background var(--transition-speed) ease, transform var(--transition-speed) ease;
+            align-self: flex-start;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .contact-form button:hover {
-            background: #16a085;
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
 
         /* Footer Styling */
         .footer {
             text-align: center;
             padding: 30px;
-            background: #f0f2f5;
+            background: var(--background-color);
             color: #888;
             margin-top: 50px;
+            transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
         }
 
         .footer a {
-            color: #1abc9c;
+            color: var(--primary-color);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: color var(--transition-speed) ease;
         }
 
         .footer a:hover {
-            color: #333;
+            color: var(--secondary-color);
         }
 
         /* Animations */
@@ -307,12 +451,85 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 250px;
+            }
+            .content {
+                margin-left: 270px;
+            }
+            .service-list {
+                gap: 20px;
+            }
+            .service-item {
+                width: 45%;
+            }
+            .skills .skill-bar-container {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+            .content {
+                margin-left: 220px;
+                padding: 40px;
+            }
+            .service-item {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--dark-grey);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                padding: 20px 0;
+                background: var(--sidebar-background);
+            }
+            .content {
+                margin-left: 0;
+                padding: 20px;
+            }
+            .service-list {
+                flex-direction: column;
+                align-items: center;
+            }
+            .service-item {
+                width: 80%;
+            }
+            .skills .skill-bar-container {
+                width: 100%;
+            }
+            .header {
+                padding-top: 40px;
+            }
+            .intro-text h1 {
+                font-size: 2.5rem;
+            }
+            .intro-text button {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Sidebar Navigation -->
     <div class="sidebar">
-        <img src="https://github.com/sd22dro/portfolio/blob/main/1%20.jpg?raw=true" alt="Subham Dutta" class="profile-image-sidebar">
+        <div class="profile-image-container">
+            <img src="https://github.com/sd22dro/portfolio/blob/main/1%20.jpg?raw=true" alt="Subham Dutta" class="profile-image-sidebar">
+        </div>
         <h2>Subham Dutta</h2>
         <p>Web & Full-Stack Developer</p>
         <a href="#home" id="link-home">
@@ -350,8 +567,7 @@
         <!-- Hero Section -->
         <header class="header" id="home">
             <div class="intro-text">
-                <h1>Hi!<br>I'm Subham Dutta</h1>
-                <p>Web developer / Mobile app developer / Graphic designer</p>
+                <h1><span id="dynamic-text">I'm a Full-Stack Developer</span></h1>
                 <button>Download CV</button>
             </div>
         </header>
@@ -469,11 +685,12 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p>Designed by Subham Dutta | <a href="https://www.linkedin.com">LinkedIn</a></p>
+        <p>Designed by Subham Dutta | <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
     </footer>
 
     <!-- GSAP Scroll Animations -->
     <script>
+        // Fade-in Animation on Scroll
         window.addEventListener("scroll", function() {
             const elements = document.querySelectorAll('.fade-in');
             const windowHeight = window.innerHeight;
@@ -501,6 +718,33 @@
                     link.classList.add('active');
                 }
             });
+        });
+
+        // Dynamic Text Change for Hero Section
+        const texts = ["I'm a Full-Stack Developer", "Hi!<br>I'm Subham<br>Dutta"];
+        let count = 0;
+        setInterval(() => {
+            $('#dynamic-text').fadeOut(500, function() {
+                $(this).html(texts[count]).fadeIn(500);
+            });
+            count = (count + 1) % texts.length;
+        }, 5000);
+
+        // Animate Bars on Scroll
+        gsap.utils.toArray('.skill-bar').forEach(bar => {
+            gsap.fromTo(bar.querySelector('.bar'), 
+                { width: '0%' }, 
+                { 
+                    width: bar.querySelector('.bar').style.width, 
+                    duration: 1.5, 
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: bar,
+                        start: 'top 80%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
         });
     </script>
 </body>
