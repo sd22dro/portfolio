@@ -58,16 +58,6 @@
             transition: background 0.3s ease;
         }
 
-        /* Optional: Customize scrollbar for better aesthetics */
-        .sidebar::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .sidebar::-webkit-scrollbar-thumb {
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
-        }
-
         .profile-image-container {
             position: relative;
             width: 180px;
@@ -108,13 +98,6 @@
             color: var(--sidebar-text);
             margin-bottom: 10px;
             transition: color 0.3s ease;
-        }
-
-        .sidebar p {
-            font-size: 1rem;
-            color: var(--light-grey);
-            margin-bottom: 40px;
-            text-align: center;
         }
 
         .sidebar a {
@@ -531,7 +514,7 @@
             <img src="https://github.com/sd22dro/portfolio/blob/main/1%20.jpg?raw=true" alt="Subham Dutta" class="profile-image-sidebar">
         </div>
         <h2>Subham Dutta</h2>
-        <p>Web & Full-Stack Developer</p>
+        <!-- Removed <p> tag here -->
         <a href="#home" id="link-home">
             <i class="fas fa-home sidebar-icon"></i>
             <span>Home</span>
@@ -749,4 +732,3 @@
     </script>
 </body>
 </html>
-
