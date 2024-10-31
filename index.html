@@ -427,6 +427,61 @@
             transform: translateY(0);
         }
 
+        /* Internships Section Styling */
+        .internship-list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .internship-item {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px 20px;
+            width: 80%;
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+        }
+
+        .internship-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .internship-item h3 {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .internship-item p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .certificate-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .certificate-link:hover {
+            color: var(--secondary-color);
+        }
+
+        .certificate-link i {
+            margin-left: 8px;
+            font-size: 1rem;
+        }
+
         /* Responsive Design */
         @media (max-width: 1024px) {
             .sidebar {
@@ -542,7 +597,7 @@
         <header class="header" id="home">
             <div class="intro-text">
                 <h1><span id="dynamic-text">I'm a Full-Stack Developer</span></h1>
-                <button>Download CV</button>
+                <button onclick="window.location.href='Certificates/TEACHNOOK_Internship_Completion_Certificate_Subham_Dutta.pdf'">Download CV</button>
             </div>
         </header>
 
@@ -642,6 +697,23 @@
                         <span class="skill-percentage">70%</span>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- Internships Section -->
+        <section id="internships" class="fade-in">
+            <h2>Internships</h2>
+            <div class="internship-list">
+                <div class="internship-item">
+                    <h3>Teachnook Internship</h3>
+                    <p>
+                        Completed a comprehensive internship at Teachnook, where I worked on developing and enhancing educational web applications. Gained hands-on experience in full-stack development, collaborating with a team to deliver scalable and user-friendly solutions.
+                    </p>
+                    <a href="Certificates/TEACHNOOK%20Internship%20Completion%20Certificate%20_%20Subham%20Dutta.pdf" target="_blank" class="certificate-link">
+                        View Certificate <i class="fas fa-file-pdf"></i>
+                    </a>
+                </div>
+                <!-- You can add more internship items here if needed -->
             </div>
         </section>
 
