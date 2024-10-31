@@ -203,7 +203,7 @@
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
 
-        /* Placeholder for Three.js Canvas */
+        /* Three.js 3D Animation Container */
         #three-container {
             position: absolute;
             top: 0;
@@ -434,6 +434,7 @@
             text-decoration: none;
             font-weight: 500;
             transition: color var(--transition-speed) ease;
+            margin-left: 5px;
         }
 
         .footer a:hover {
@@ -524,6 +525,9 @@
             .skills .skill-bar-container {
                 width: 100%;
             }
+            #three-container {
+                width: 40%;
+            }
         }
 
         @media (max-width: 768px) {
@@ -549,6 +553,9 @@
             .intro-text button {
                 padding: 12px 25px;
                 font-size: 1rem;
+            }
+            #three-container {
+                width: 50%;
             }
         }
 
@@ -630,6 +637,11 @@
             <i class="fas fa-envelope sidebar-icon"></i>
             <span>Contact</span>
         </a>
+        <!-- Optional: Add LinkedIn Link to Sidebar -->
+        <a href="https://www.linkedin.com/in/subham-dutta-03946324a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BT0zYbswJS7GoapW%2BGuuOkg%3D%3D" target="_blank" rel="noopener noreferrer" class="linkedin-link" aria-label="LinkedIn">
+            <i class="fab fa-linkedin sidebar-icon"></i>
+            <span>LinkedIn</span>
+        </a>
     </div>
 
     <!-- Content Section -->
@@ -638,7 +650,7 @@
         <header class="header parallax" id="home">
             <div class="intro-text">
                 <h1><span id="dynamic-text">I'm a Full-Stack Developer</span></h1>
-                <button onclick="window.location.href='Certificates/TEACHNOOK_Internship_Completion_Certificate_Subham_Dutta.pdf'">Download CV</button>
+                <button onclick="window.location.href='Certificates/teachnook-internship-completion-certificate-subham-dutta.pdf'">Download CV</button>
             </div>
             <!-- Three.js Container -->
             <div id="three-container"></div>
@@ -752,7 +764,8 @@
                     <p>
                         Completed a comprehensive internship at Teachnook, where I worked on developing and enhancing educational web applications. Gained hands-on experience in full-stack development, collaborating with a team to deliver scalable and user-friendly solutions.
                     </p>
-                    <a href="Certificates/TEACHNOOK%20Internship%20Completion%20Certificate%20_%20Subham%20Dutta.pdf" target="_blank" class="certificate-link">
+                    <!-- Updated Link with Clean Filename -->
+                    <a href="Certificates/teachnook-internship-completion-certificate-subham-dutta.pdf" target="_blank" class="certificate-link" download aria-label="View Teachnook Internship Completion Certificate">
                         View Certificate <i class="fas fa-file-pdf"></i>
                     </a>
                 </div>
@@ -774,12 +787,16 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p>Designed by Subham Dutta | <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+        <p>Designed by Subham Dutta | 
+            <a href="https://www.linkedin.com/in/subham-dutta-03946324a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BT0zYbswJS7GoapW%2BGuuOkg%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+        </p>
     </footer>
 
     <!-- GSAP Scroll Animations and Three.js Script -->
     <script>
-        // Fade-in Animation on Scroll using GSAP
+        // Register GSAP ScrollTrigger Plugin
         gsap.registerPlugin(ScrollTrigger);
 
         // Animate Sections on Scroll
@@ -897,3 +914,4 @@
     </script>
 </body>
 </html>
+
