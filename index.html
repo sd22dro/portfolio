@@ -13,6 +13,8 @@
     <!-- GSAP for Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/ScrollTrigger.min.js"></script>
+    <!-- Three.js for 3D Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
         /* CSS Variables for Easy Theming */
         :root {
@@ -56,6 +58,7 @@
             border-right: 1px solid var(--dark-grey);
             overflow-y: auto;
             transition: background 0.3s ease;
+            z-index: 1000;
         }
 
         .profile-image-container {
@@ -63,6 +66,7 @@
             width: 180px;
             height: 180px;
             margin-bottom: 25px;
+            perspective: 1000px;
         }
 
         .profile-image-container::before {
@@ -106,12 +110,13 @@
             transition: all var(--transition-speed) ease;
             text-decoration: none;
             background: transparent;
+            transform: perspective(500px) rotateY(0deg);
         }
 
         .sidebar a:hover, .sidebar a.active {
             color: var(--white);
             background-color: var(--sidebar-hover);
-            transform: scale(1.05);
+            transform: perspective(500px) scale(1.05) rotateY(10deg);
         }
 
         .sidebar-icon {
@@ -135,7 +140,7 @@
         .header {
             min-height: 100vh;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             padding-top: 80px;
             text-align: left;
             background: linear-gradient(135deg, var(--background-color) 50%, #ffffff 50%);
@@ -189,12 +194,23 @@
             margin-top: 20px;
             transition: background var(--transition-speed) ease, transform var(--transition-speed) ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            perspective: 1000px;
         }
 
         .intro-text button:hover {
             background: var(--secondary-color);
-            transform: translateY(-5px);
+            transform: translateY(-5px) rotateY(15deg);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Placeholder for Three.js Canvas */
+        #three-container {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            z-index: 1;
         }
 
         /* Sections Styling */
@@ -206,6 +222,14 @@
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        section.show {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 1s ease, transform 1s ease;
         }
 
         section:hover {
@@ -260,6 +284,7 @@
             width: 30%;
             transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
             cursor: pointer;
+            perspective: 1000px;
         }
 
         .service-item:hover {
@@ -512,6 +537,19 @@
             .service-item {
                 width: 100%;
             }
+            .skills .skill-bar-container {
+                width: 100%;
+            }
+            .header {
+                padding-top: 40px;
+            }
+            .intro-text h1 {
+                font-size: 2.5rem;
+            }
+            .intro-text button {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
         }
 
         @media (max-width: 576px) {
@@ -550,6 +588,9 @@
             .intro-text button {
                 padding: 12px 25px;
                 font-size: 1rem;
+            }
+            #three-container {
+                display: none; /* Hide Three.js canvas on small screens */
             }
         }
     </style>
@@ -594,11 +635,13 @@
     <!-- Content Section -->
     <div class="content">
         <!-- Hero Section -->
-        <header class="header" id="home">
+        <header class="header parallax" id="home">
             <div class="intro-text">
                 <h1><span id="dynamic-text">I'm a Full-Stack Developer</span></h1>
                 <button onclick="window.location.href='Certificates/TEACHNOOK_Internship_Completion_Certificate_Subham_Dutta.pdf'">Download CV</button>
             </div>
+            <!-- Three.js Container -->
+            <div id="three-container"></div>
         </header>
 
         <!-- About Section -->
@@ -734,36 +777,40 @@
         <p>Designed by Subham Dutta | <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
     </footer>
 
-    <!-- GSAP Scroll Animations -->
+    <!-- GSAP Scroll Animations and Three.js Script -->
     <script>
-        // Fade-in Animation on Scroll
-        window.addEventListener("scroll", function() {
-            const elements = document.querySelectorAll('.fade-in');
-            const windowHeight = window.innerHeight;
+        // Fade-in Animation on Scroll using GSAP
+        gsap.registerPlugin(ScrollTrigger);
 
-            elements.forEach(el => {
-                const position = el.getBoundingClientRect().top;
-                if (position < windowHeight - 100) {
-                    el.classList.add('show');
+        // Animate Sections on Scroll
+        gsap.utils.toArray('section').forEach(section => {
+            gsap.fromTo(section, 
+                { opacity: 0, y: 50 }, 
+                { 
+                    opacity: 1, 
+                    y: 0, 
+                    duration: 1, 
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 80%',
+                        toggleClass: 'show',
+                        once: true
+                    }
                 }
-            });
+            );
+        });
 
-            // Sidebar link active state update
-            const sections = document.querySelectorAll('section, header');
-            const navLinks = document.querySelectorAll('.sidebar a');
-            let current = "";
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 150;
-                if (pageYOffset >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
-            });
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
+        // Parallax Effect for Header Background
+        gsap.to('.header.parallax', {
+            backgroundPosition: '50% 100%',
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.header.parallax',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true
+            }
         });
 
         // Dynamic Text Change for Hero Section
@@ -792,6 +839,61 @@
                 }
             );
         });
+
+        // Sidebar Active Link Highlighting
+        window.addEventListener("scroll", function() {
+            const sections = document.querySelectorAll('section, header');
+            const navLinks = document.querySelectorAll('.sidebar a');
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                if (pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Three.js 3D Animation
+        // Scene, Camera, Renderer
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        const container = document.getElementById('three-container');
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        container.appendChild(renderer.domElement);
+
+        // Responsive Canvas
+        window.addEventListener('resize', function() {
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+            renderer.setSize(width, height);
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+        });
+
+        // Geometry, Material, Mesh
+        const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+        const material = new THREE.MeshNormalMaterial({ wireframe: false });
+        const torusKnot = new THREE.Mesh(geometry, material);
+        scene.add(torusKnot);
+
+        // Position Camera
+        camera.position.z = 50;
+
+        // Animation Function
+        function animate() {
+            requestAnimationFrame(animate);
+            torusKnot.rotation.x += 0.01;
+            torusKnot.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        }
+        animate();
     </script>
 </body>
 </html>
