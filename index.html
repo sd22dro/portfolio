@@ -1,20 +1,28 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
+    <!-- Meta Tags and Title -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subham Dutta - Full-Stack Developer Portfolio</title>
+    
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <!-- GSAP for Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/ScrollTrigger.min.js"></script>
+    
     <!-- Three.js for 3D Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Custom Styles -->
     <style>
         /* CSS Variables for Easy Theming */
         :root {
@@ -365,6 +373,118 @@
             color: var(--text-color);
         }
 
+        /* Projects Section */
+        .project-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-item {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 40px 20px;
+            width: 30%;
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            cursor: pointer;
+            perspective: 1000px;
+        }
+
+        .project-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-item h3 {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .project-item p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .project-item a {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .project-item a:hover {
+            color: var(--secondary-color);
+        }
+
+        .project-item a i {
+            margin-left: 8px;
+            font-size: 1rem;
+        }
+
+        /* Internships Section */
+        .internship-list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .internship-item {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px 20px;
+            width: 80%;
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+        }
+
+        .internship-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .internship-item h3 {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .internship-item p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .certificate-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .certificate-link:hover {
+            color: var(--secondary-color);
+        }
+
+        .certificate-link i {
+            margin-left: 8px;
+            font-size: 1rem;
+        }
+
         /* Contact Form Styling */
         .contact-form {
             max-width: 600px;
@@ -453,61 +573,6 @@
             transform: translateY(0);
         }
 
-        /* Internships Section Styling */
-        .internship-list {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .internship-item {
-            background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            padding: 30px 20px;
-            width: 80%;
-            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-        }
-
-        .internship-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .internship-item h3 {
-            font-size: 1.8rem;
-            color: var(--text-color);
-            margin-bottom: 15px;
-        }
-
-        .internship-item p {
-            font-size: 1rem;
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .certificate-link {
-            display: inline-flex;
-            align-items: center;
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color var(--transition-speed) ease;
-        }
-
-        .certificate-link:hover {
-            color: var(--secondary-color);
-        }
-
-        .certificate-link i {
-            margin-left: 8px;
-            font-size: 1rem;
-        }
-
         /* Responsive Design */
         @media (max-width: 1024px) {
             .sidebar {
@@ -516,10 +581,10 @@
             .content {
                 margin-left: 270px;
             }
-            .service-list {
+            .service-list, .project-list {
                 gap: 20px;
             }
-            .service-item {
+            .service-item, .project-item {
                 width: 45%;
             }
             .skills .skill-bar-container {
@@ -538,7 +603,7 @@
                 margin-left: 220px;
                 padding: 40px;
             }
-            .service-item {
+            .service-item, .project-item {
                 width: 100%;
             }
             .skills .skill-bar-container {
@@ -576,11 +641,11 @@
                 margin-left: 0;
                 padding: 20px;
             }
-            .service-list {
+            .service-list, .project-list {
                 flex-direction: column;
                 align-items: center;
             }
-            .service-item {
+            .service-item, .project-item {
                 width: 80%;
             }
             .skills .skill-bar-container {
@@ -608,7 +673,6 @@
         <div class="profile-image-container">
             <img src="https://github.com/sd22dro/portfolio/blob/main/1%20.jpg?raw=true" alt="Subham Dutta" class="profile-image-sidebar">
         </div>
-        <!-- Removed <h2>Subham Dutta</h2> tag here -->
         <a href="#home" id="link-home">
             <i class="fas fa-home sidebar-icon"></i>
             <span>Home</span>
@@ -637,8 +701,8 @@
             <i class="fas fa-envelope sidebar-icon"></i>
             <span>Contact</span>
         </a>
-        <!-- Optional: Add LinkedIn Link to Sidebar -->
-        <a href="https://www.linkedin.com/in/subham-dutta-03946324a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BT0zYbswJS7GoapW%2BGuuOkg%3D%3D" target="_blank" rel="noopener noreferrer" class="linkedin-link" aria-label="LinkedIn">
+        <!-- LinkedIn Link -->
+        <a href="https://www.linkedin.com/in/subham-dutta-03946324a" target="_blank" rel="noopener noreferrer" class="linkedin-link" aria-label="LinkedIn">
             <i class="fab fa-linkedin sidebar-icon"></i>
             <span>LinkedIn</span>
         </a>
@@ -755,6 +819,34 @@
             </div>
         </section>
 
+        <!-- Projects Section -->
+        <section id="projects" class="fade-in">
+            <h2>Projects</h2>
+            <div class="project-list">
+                <div class="project-item">
+                    <h3>Recipe App</h3>
+                    <p>A web application that allows users to search for recipes by ingredients and provides detailed cooking instructions.</p>
+                    <a href="https://github.com/sd22dro/projects/tree/main/recipe-app" target="_blank" rel="noopener noreferrer">
+                        View on GitHub <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                <div class="project-item">
+                    <h3>Weather App</h3>
+                    <p>A dynamic weather application that provides real-time weather updates and forecasts for any location.</p>
+                    <a href="https://github.com/sd22dro/projects/tree/main/weather-app" target="_blank" rel="noopener noreferrer">
+                        View on GitHub <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                <div class="project-item">
+                    <h3>Resume Analyzer</h3>
+                    <p>An innovative tool that analyzes resumes and provides insights to improve content and formatting for better job prospects.</p>
+                    <a href="https://github.com/sd22dro/projects/tree/main/resume-analyzer" target="_blank" rel="noopener noreferrer">
+                        View on GitHub <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <!-- Internships Section -->
         <section id="internships" class="fade-in">
             <h2>Internships</h2>
@@ -764,7 +856,6 @@
                     <p>
                         Completed a comprehensive internship at Teachnook, where I worked on developing and enhancing educational web applications. Gained hands-on experience in full-stack development, collaborating with a team to deliver scalable and user-friendly solutions.
                     </p>
-                    <!-- Updated Link with Clean Filename -->
                     <a href="Certificates/teachnook-internship-completion-certificate-subham-dutta.pdf" target="_blank" class="certificate-link" download aria-label="View Teachnook Internship Completion Certificate">
                         View Certificate <i class="fas fa-file-pdf"></i>
                     </a>
@@ -788,7 +879,7 @@
     <!-- Footer -->
     <footer class="footer">
         <p>Designed by Subham Dutta | 
-            <a href="https://www.linkedin.com/in/subham-dutta-03946324a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BT0zYbswJS7GoapW%2BGuuOkg%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/subham-dutta-03946324a" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                 <i class="fab fa-linkedin"></i> LinkedIn
             </a>
         </p>
@@ -877,11 +968,13 @@
         });
 
         // Three.js 3D Animation
+        // Define container before using it
+        const container = document.getElementById('three-container');
+
         // Scene, Camera, Renderer
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        const container = document.getElementById('three-container');
         renderer.setSize(container.clientWidth, container.clientHeight);
         container.appendChild(renderer.domElement);
 
