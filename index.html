@@ -876,12 +876,16 @@
         <!-- Contact Section -->
         <section id="contact" class="fade-in">
             <h2>Contact</h2>
-            <form class="contact-form">
-                <input type="text" placeholder="Name" required>
-                <input type="email" placeholder="Email" required>
-                <textarea placeholder="Message" rows="5" required></textarea>
+            <form class="contact-form" action="https://formspree.io/f/mqakykoo" method="POST">
+                <!-- Formspree requires form fields to have 'name' attributes -->
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="_replyto" placeholder="Email" required>
+                <textarea name="message" placeholder="Message" rows="5" required></textarea>
+                <!-- Optional: Customize the email subject -->
+                <input type="hidden" name="_subject" value="New Portfolio Contact Form Submission">
                 <button type="submit">Send Message</button>
             </form>
+            <div id="form-status"></div>
         </section>
     </div>
 
@@ -976,6 +980,30 @@
             });
         });
 
+        // Form Submission Handling for Formspree
+        const form = document.querySelector('.contact-form');
+        const formStatus = document.getElementById('form-status');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            formStatus.innerHTML = "<p>Sending your message...</p>"; // Optional: Add a loading message
+            const data = new FormData(form);
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            if (response.ok) {
+                form.reset();
+                formStatus.innerHTML = "<p>Thanks for your message! I'll get back to you soon.</p>";
+            } else {
+                const errorText = await response.text();
+                formStatus.innerHTML = `<p>Oops! There was a problem submitting your form: ${errorText}</p>`;
+            }
+        });
+
         // Three.js 3D Animation
         // Define container before using it
         const container = document.getElementById('three-container');
@@ -1016,4 +1044,5 @@
     </script>
 </body>
 </html>
+
 
