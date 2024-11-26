@@ -191,7 +191,8 @@
             margin-bottom: 30px;
         }
 
-        .intro-text button {
+        /* Download CV Button Styling */
+        .download-cv-button {
             background: var(--primary-color);
             color: var(--white);
             padding: 15px 35px;
@@ -202,13 +203,18 @@
             margin-top: 20px;
             transition: background var(--transition-speed) ease, transform var(--transition-speed) ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            perspective: 1000px;
+            text-decoration: none; /* Remove underline from link */
+            display: inline-block;
         }
 
-        .intro-text button:hover {
+        .download-cv-button:hover {
             background: var(--secondary-color);
             transform: translateY(-5px) rotateY(15deg);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .intro-text button {
+            display: none; /* Hide the existing button if using the <a> tag */
         }
 
         /* Three.js 3D Animation Container */
@@ -615,7 +621,7 @@
             .intro-text h1 {
                 font-size: 2.5rem;
             }
-            .intro-text button {
+            .intro-text button, .download-cv-button {
                 padding: 12px 25px;
                 font-size: 1rem;
             }
@@ -657,7 +663,7 @@
             .intro-text h1 {
                 font-size: 2.5rem;
             }
-            .intro-text button {
+            .intro-text button, .download-cv-button {
                 padding: 12px 25px;
                 font-size: 1rem;
             }
@@ -714,7 +720,10 @@
         <header class="header parallax" id="home">
             <div class="intro-text">
                 <h1><span id="dynamic-text">I'm a Full-Stack Developer</span></h1>
-                <button onclick="window.location.href='Certificates/teachnook-internship-completion-certificate-subham-dutta.pdf'">Download CV</button>
+                <!-- Updated Download CV Button -->
+                <a href="https://internshala.com/download/resume" target="_blank" rel="noopener noreferrer" class="download-cv-button">
+                    Download CV
+                </a>
             </div>
             <!-- Three.js Container -->
             <div id="three-container"></div>
