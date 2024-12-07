@@ -24,7 +24,6 @@
     
     <!-- Custom Styles -->
     <style>
-        /* CSS Variables for Easy Theming */
         :root {
             --primary-color: #1abc9c;
             --secondary-color: #16a085;
@@ -40,17 +39,15 @@
             --font-family: 'Poppins', sans-serif;
         }
 
-        /* General Styling */
         body {
             font-family: var(--font-family);
             background: var(--background-color);
             color: var(--text-color);
             margin: 0;
             overflow-x: hidden;
-            scroll-behavior: smooth; /* Smooth Scrolling */
+            scroll-behavior: smooth;
         }
 
-        /* Sidebar Styling */
         .sidebar {
             width: 300px;
             background: var(--sidebar-background);
@@ -101,7 +98,7 @@
         }
 
         .profile-image-sidebar:hover {
-            transform: scale(1.05); /* Slight Zoom on Hover */
+            transform: scale(1.05);
         }
 
         .sidebar a {
@@ -137,14 +134,12 @@
             color: var(--white);
         }
 
-        /* Content Area */
         .content {
             margin-left: 320px;
             padding: 60px;
             transition: margin-left var(--transition-speed) ease;
         }
 
-        /* Header (Hero) Section */
         .header {
             min-height: 100vh;
             display: flex;
@@ -191,7 +186,6 @@
             margin-bottom: 30px;
         }
 
-        /* Download CV Button Styling */
         .download-cv-button {
             background: var(--primary-color);
             color: var(--white);
@@ -203,7 +197,7 @@
             margin-top: 20px;
             transition: background var(--transition-speed) ease, transform var(--transition-speed) ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            text-decoration: none; /* Remove underline from link */
+            text-decoration: none;
             display: inline-block;
         }
 
@@ -214,10 +208,9 @@
         }
 
         .intro-text button {
-            display: none; /* Hide the existing button if using the <a> tag */
+            display: none;
         }
 
-        /* Three.js 3D Animation Container */
         #three-container {
             position: absolute;
             top: 0;
@@ -227,7 +220,6 @@
             z-index: 1;
         }
 
-        /* Sections Styling */
         section {
             padding: 80px 0;
             text-align: center;
@@ -280,7 +272,6 @@
             line-height: 1.8;
         }
 
-        /* Services Section */
         .service-list {
             display: flex;
             justify-content: space-around;
@@ -329,7 +320,6 @@
             line-height: 1.8;
         }
 
-        /* Skills Section */
         .skills {
             max-width: 1200px;
             margin: 0 auto;
@@ -379,7 +369,6 @@
             color: var(--text-color);
         }
 
-        /* Projects Section */
         .project-list {
             display: flex;
             justify-content: space-around;
@@ -436,7 +425,6 @@
             font-size: 1rem;
         }
 
-        /* Internships Section */
         .internship-list {
             display: flex;
             flex-direction: column;
@@ -491,7 +479,6 @@
             font-size: 1rem;
         }
 
-        /* Contact Form Styling */
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
@@ -545,7 +532,6 @@
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
 
-        /* Footer Styling */
         .footer {
             text-align: center;
             padding: 30px;
@@ -567,7 +553,6 @@
             color: var(--secondary-color);
         }
 
-        /* Animations */
         .fade-in {
             opacity: 0;
             transform: translateY(50px);
@@ -579,7 +564,6 @@
             transform: translateY(0);
         }
 
-        /* Responsive Design */
         @media (max-width: 1024px) {
             .sidebar {
                 width: 250px;
@@ -668,7 +652,7 @@
                 font-size: 1rem;
             }
             #three-container {
-                display: none; /* Hide Three.js canvas on small screens */
+                display: none;
             }
         }
     </style>
@@ -707,7 +691,6 @@
             <i class="fas fa-envelope sidebar-icon"></i>
             <span>Contact</span>
         </a>
-        <!-- LinkedIn Link -->
         <a href="https://www.linkedin.com/in/subham-dutta-03946324a" target="_blank" rel="noopener noreferrer" class="linkedin-link" aria-label="LinkedIn">
             <i class="fab fa-linkedin sidebar-icon"></i>
             <span>LinkedIn</span>
@@ -720,12 +703,10 @@
         <header class="header parallax" id="home">
             <div class="intro-text">
                 <h1><span id="dynamic-text">I'm a Full-Stack Developer</span></h1>
-                <!-- Updated Download CV Button -->
                 <a href="https://internshala.com/download/resume" target="_blank" rel="noopener noreferrer" class="download-cv-button">
                     Download CV
                 </a>
             </div>
-            <!-- Three.js Container -->
             <div id="three-container"></div>
         </header>
 
@@ -853,6 +834,14 @@
                         View on GitHub <i class="fas fa-external-link-alt"></i>
                     </a>
                 </div>
+                <!-- New Project: Budget Manage -->
+                <div class="project-item">
+                    <h3>Budget Manage</h3>
+                    <p>A user-friendly budgeting tool to help manage expenses and track financial goals.</p>
+                    <a href="https://github.com/sd22dro/projects/tree/main/Budget%20Manage" target="_blank" rel="noopener noreferrer">
+                        View on GitHub <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -869,7 +858,6 @@
                         View Certificate <i class="fas fa-file-pdf"></i>
                     </a>
                 </div>
-                <!-- You can add more internship items here if needed -->
             </div>
         </section>
 
@@ -877,11 +865,9 @@
         <section id="contact" class="fade-in">
             <h2>Contact</h2>
             <form class="contact-form" action="https://formspree.io/f/mqakykoo" method="POST">
-                <!-- Formspree requires form fields to have 'name' attributes -->
                 <input type="text" name="name" placeholder="Name" required>
                 <input type="email" name="_replyto" placeholder="Email" required>
                 <textarea name="message" placeholder="Message" rows="5" required></textarea>
-                <!-- Optional: Customize the email subject -->
                 <input type="hidden" name="_subject" value="New Portfolio Contact Form Submission">
                 <button type="submit">Send Message</button>
             </form>
@@ -889,7 +875,6 @@
         </section>
     </div>
 
-    <!-- Footer -->
     <footer class="footer">
         <p>Designed by Subham Dutta | 
             <a href="https://www.linkedin.com/in/subham-dutta-03946324a" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
@@ -898,12 +883,9 @@
         </p>
     </footer>
 
-    <!-- GSAP Scroll Animations and Three.js Script -->
     <script>
-        // Register GSAP ScrollTrigger Plugin
         gsap.registerPlugin(ScrollTrigger);
 
-        // Animate Sections on Scroll
         gsap.utils.toArray('section').forEach(section => {
             gsap.fromTo(section, 
                 { opacity: 0, y: 50 }, 
@@ -922,7 +904,6 @@
             );
         });
 
-        // Parallax Effect for Header Background
         gsap.to('.header.parallax', {
             backgroundPosition: '50% 100%',
             ease: 'none',
@@ -934,7 +915,6 @@
             }
         });
 
-        // Dynamic Text Change for Hero Section
         const texts = ["I'm a Full-Stack Developer", "Hi!<br>I'm Subham<br>Dutta"];
         let count = 0;
         setInterval(() => {
@@ -944,7 +924,6 @@
             count = (count + 1) % texts.length;
         }, 5000);
 
-        // Animate Bars on Scroll
         gsap.utils.toArray('.skill-bar').forEach(bar => {
             gsap.fromTo(bar.querySelector('.bar'), 
                 { width: '0%' }, 
@@ -961,7 +940,6 @@
             );
         });
 
-        // Sidebar Active Link Highlighting
         window.addEventListener("scroll", function() {
             const sections = document.querySelectorAll('section, header');
             const navLinks = document.querySelectorAll('.sidebar a');
@@ -980,13 +958,12 @@
             });
         });
 
-        // Form Submission Handling for Formspree
         const form = document.querySelector('.contact-form');
         const formStatus = document.getElementById('form-status');
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            formStatus.innerHTML = "<p>Sending your message...</p>"; // Optional: Add a loading message
+            formStatus.innerHTML = "<p>Sending your message...</p>";
             const data = new FormData(form);
             const response = await fetch(form.action, {
                 method: form.method,
@@ -1004,18 +981,13 @@
             }
         });
 
-        // Three.js 3D Animation
-        // Define container before using it
         const container = document.getElementById('three-container');
-
-        // Scene, Camera, Renderer
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
         renderer.setSize(container.clientWidth, container.clientHeight);
         container.appendChild(renderer.domElement);
 
-        // Responsive Canvas
         window.addEventListener('resize', function() {
             const width = container.clientWidth;
             const height = container.clientHeight;
@@ -1024,16 +996,13 @@
             camera.updateProjectionMatrix();
         });
 
-        // Geometry, Material, Mesh
         const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
         const material = new THREE.MeshNormalMaterial({ wireframe: false });
         const torusKnot = new THREE.Mesh(geometry, material);
         scene.add(torusKnot);
 
-        // Position Camera
         camera.position.z = 50;
 
-        // Animation Function
         function animate() {
             requestAnimationFrame(animate);
             torusKnot.rotation.x += 0.01;
